@@ -215,8 +215,8 @@ services:
   # Comment this if you already have a reverse proxy running
   proxy:
     build:
-      context: ../../..
-      dockerfile: ./apps/proxy/Dockerfile.nginx
+      context: ..
+      dockerfile: apps/proxy/Dockerfile.nginx
     deploy:
       replicas: 1
       restart_policy:
