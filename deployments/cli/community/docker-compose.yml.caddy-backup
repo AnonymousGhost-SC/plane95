@@ -214,9 +214,7 @@ services:
 
   # Comment this if you already have a reverse proxy running
   proxy:
-    build:
-      context: ../../..
-      dockerfile: ./apps/proxy/Dockerfile.nginx
+    image: artifacts.plane.so/makeplane/plane-proxy:${APP_RELEASE:-stable}
     deploy:
       replicas: 1
       restart_policy:
@@ -232,6 +230,9 @@ services:
         published: ${LISTEN_HTTPS_PORT:-443}
         protocol: tcp
         mode: host
+    volumes:
+      - proxy_config:/config
+      - proxy_data:/data
     depends_on:
       - web
       - api
